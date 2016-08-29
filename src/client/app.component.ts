@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {InfoBoxData} from "./my-material/components/infobox.component";
+import {WordsService} from "./words-service";
 @Component({
     selector: `my-app`,
     template: `
     <h1>Hello world</h1>
-    <my-infobox [data]="wordInfo" (selected)="onSelected($event)"></my-infobox>
+    <my-infobox *ngFor="let wordInfo of words" [data]="wordInfo" (selected)="onSelected($event)"></my-infobox>
     `,
+    providers: [WordsService],
     styles: [`
         h1{
             color:red;
@@ -13,15 +15,15 @@ import {InfoBoxData} from "./my-material/components/infobox.component";
     `]
 })
 export class AppComponent implements OnInit {
-    private wordInfo: InfoBoxData;
+    public words: Array<InfoBoxData>;
+
     public onSelected = (title: string)=> {
         alert(title);
     };
 
-    ngOnInit(): void {
-        this.wordInfo = {
-            title: 'Metaphor',
-            description: 'an expression, often found in literature, that describes a person or object by referring to something that is considered to have similar characteristics to that person or object'
-        };
+    constructor(private wordsService: WordsService) {
+        this.words = wordsService.wordsList;
     }
+
+    ngOnInit(): void {}
 }
