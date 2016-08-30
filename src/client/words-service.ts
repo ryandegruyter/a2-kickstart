@@ -3,7 +3,7 @@ import {InfoBoxData} from "./my-material/components/infobox.component";
 
 @Injectable()
 export class WordsService {
-    private _words: Array<InfoBoxData>;
+    protected _words: Array<InfoBoxData>;
 
     constructor() {
         this._words = [

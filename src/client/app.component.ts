@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Provider} from '@angular/core';
 import {InfoBoxData} from "./my-material/components/infobox.component";
 import {WordsService} from "./words-service";
+import {WordsHttpService} from "./words-http-service";
+import {Observable} from "rxjs";
 @Component({
     selector: `my-app`,
     template: `
@@ -15,7 +17,7 @@ import {WordsService} from "./words-service";
     `]
 })
 export class AppComponent implements OnInit {
-    public words: Array<InfoBoxData>;
+    public words: any;
 
     public onSelected = (title: string)=> {
         alert(title);
