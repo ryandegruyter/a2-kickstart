@@ -1,47 +1,43 @@
-# Angular 2 Seed
-> A simple Angular 2 Seed featuring Angular 2 and Webpack 2 with async routes.
+# Oefening 1: Angular2 Bootstrap
 
+## Scenario
 
-```bash
-# clone our repo
-# --depth 1 removes all but one .git commit history
-git clone --depth 1 https://github.com/angularclass/angular2-seed.git
+## Root component
+In `src/client/app-component.ts` vind je:
 
-# change directory to our repo
-cd angular2-seed
+```
+import {Component} from '@angular/core';
+```
+### Taken
 
-# install the repo with npm
-npm install
+1. Maak een klasse `AppComponent` en exporteer het component met `export`
+2. Decorate `AppComponent` met de `@Component()` decorator
+3. Geef het component een selector (e.g. `my-app`)
+5. Definieer een template dat de titel "Hello World" toont
+6. Zorg dat de text rood gekleurd wordt mbhv de `styles` metadata property
+7. Gebruik de selector als een tag in `src/index.html`
 
-# start the server
-npm start
+## Root module
+In `src/client/app-module.ts` vind je de import statements:
 
-# use Hot Module Replacement
-npm run server:dev:hmr
-
-# if you're in China use cnpm
-# https://github.com/cnpm/cnpm
+```
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 ```
 
-## Features
-* Webpack 2
-  * `System.import` (with synthetic default imports)
-  * DLL files
-  * HMR
-* TypeScript 2
-  * @types
-* Angular 2
-  * Async loading
-* AngularClass
-  * @angularclass/form-validator
-  * @angularclass/conventions-loader
-  * @angularclass/hmr-loader
-  * @angularclass/hmr
+### Taken
 
-Everything in this repo will be merged into [angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+1. Maak een klasse `AppModule` en exporteer de module met `export`
+2. Decoreer `AppModule` met de `@NgModule()` decorator
+3. Declareer `AppComponent` in de `declarations` property
+5. Declareer `AppComponent` in de `bootstrap` property
 
-<p align="center">
-  <a href="http://courses.angularclass.com/courses/angular-2-fundamentals?utm_source=github-angular2-seed&utm_medium=open-source&utm_campaign=angular2seed" target="_blank">
-    <img width="438" alt="Angular 2 Fundamentals" src="https://cloud.githubusercontent.com/assets/1016365/17200649/085798c6-543c-11e6-8ad0-2484f0641624.png">
-  </a>
-</p>
+## JIT Dynamic Bootstrap
+In `src/main.browser.ts` vind je:
+
+```
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {AppModule} from "./client/app.module";
+```
+
+1. Bootstrap `AppModule` mbhv `platformBrowserDynamic()`
