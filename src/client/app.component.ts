@@ -7,9 +7,9 @@ import {Observable} from "rxjs";
     selector: `my-app`,
     template: `
     <h1>Hello world</h1>
-    <my-infobox *ngFor="let wordInfo of words" [data]="wordInfo" (selected)="onSelected($event)"></my-infobox>
+    <my-infobox *ngFor="let wordInfo of (words | async)" [data]="wordInfo" (selected)="onSelected($event)"></my-infobox>
     `,
-    providers: [WordsService],
+    providers: [WordsHttpService],
     styles: [`
         h1{
             color:red;
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         alert(title);
     };
 
-    constructor(private wordsService: WordsService) {
+    constructor(private wordsService: WordsHttpService) {
         this.words = wordsService.wordsList;
     }
 
